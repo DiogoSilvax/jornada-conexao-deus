@@ -1,57 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. SCROLL REVEAL ANIMATION
-    const animatedElements = document.querySelectorAll('.animate-up, section .container, .card-item, .phase-card');
+    // 1. SCROLL REVEAL ANIMATION - Robusto para evitar espaços vazios
+    const animatedElements = document.querySelectorAll('.animate-up, .card-item, .phase-card');
     
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px 50px 0px'
     };
 
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Adicionando a classe 'visible' para elementos que não a tem mas deveriam animar
-                if (entry.target.tagName === 'SECTION' || entry.target.classList.contains('container')) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+                // Pequeno delay para remover o js-hidden se ele estiver lá
+                setTimeout(() => {
+                    entry.target.classList.remove('js-hidden');
+                }, 800);
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     animatedElements.forEach(el => {
-        // Inicialmente invisível se não tiver a classe animate-up (para sections)
-        if (!el.classList.contains('animate-up')) {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 1s ease-out';
+        const rect = el.getBoundingClientRect();
+        // Só esconde se o elemento estiver realmente FORA da primeira dobra (abaixo da tela)
+        if (rect.top > window.innerHeight) {
+            el.classList.add('js-hidden');
+        } else {
+            el.classList.add('visible'); // Já visível se estiver na dobra inicial
         }
         scrollObserver.observe(el);
     });
 
-    // MARCAR HERO COMO VISUALIZADO IMEDIATAMENTE
-    setTimeout(() => {
-        document.querySelectorAll('.hero .animate-up').forEach(el => el.classList.add('visible'));
-    }, 100);
 
-
-    // 2. STICKY CTA LOGIC
-    const stickyCta = document.querySelector('.sticky-cta');
-    const heroSection = document.querySelector('.hero');
-
-    window.addEventListener('scroll', () => {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        if (window.scrollY > heroBottom - 100) {
-            stickyCta.classList.add('visible');
-        } else {
-            stickyCta.classList.remove('visible');
-        }
-    });
-
-
-    // 3. SMOOTH SCROLL FOR ANCHORS
+    // 2. SMOOTH SCROLL FOR ANCHORS
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
