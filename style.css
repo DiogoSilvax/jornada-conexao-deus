@@ -112,7 +112,7 @@ section {
 
 .hero-image-wrapper {
     width: 100%;
-    margin-bottom: 40px;
+    margin: 0;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
@@ -125,13 +125,13 @@ section {
     display: block;
 }
 
-.hero-text h1 {
+.hero-text-top h1 {
     font-size: 2.8rem;
     line-height: 1.2;
     margin-bottom: 20px;
 }
 
-.hero-text h1 span {
+.hero-text-top h1 span {
     color: var(--color-gold-dark);
     font-style: italic;
 }
@@ -141,12 +141,16 @@ section {
     font-style: italic;
     color: var(--color-text-muted);
     font-size: 1.3rem;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
+}
+
+.hero-text-bottom {
+    margin-top: 32px;
 }
 
 .description {
     font-size: 1.15rem;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     color: var(--color-text-muted);
 }
 
