@@ -348,8 +348,75 @@ section {
 .highlight-urgent { color: #ff6b6b; font-weight: 700; text-decoration: underline; }
 .warning { font-size: 1.2rem; font-weight: 600; margin-top: 24px; }
 
-/* 11. CTA FINAL */
+/* 11. CTA FINAL & OFERTA */
 .section-cta-final { padding: 100px 0; background: var(--bg-beige); }
+
+.offer-card {
+    background: #fff;
+    border: 2px solid var(--color-gold);
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin: 32px auto;
+    max-width: 500px;
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+    position: relative;
+}
+
+.offer-header {
+    margin-bottom: 24px;
+}
+
+.pulse-badge {
+    background: #ffdbdb;
+    color: #d32f2f;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: flash-badge 2s infinite;
+}
+
+@keyframes flash-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.offer-prices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.old-price {
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.by {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    font-style: italic;
+    font-family: 'Lora', serif;
+}
+
+.new-price {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-orange);
+    line-height: 1;
+}
+
+.offer-sub {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
 
 /* 12. FOOTER */
 .footer { padding: 80px 0 40px; }
