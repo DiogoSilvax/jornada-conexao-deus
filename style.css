@@ -317,19 +317,26 @@ section {
 .phase-emoji { font-size: 2rem; display: block; margin-bottom: 12px; }
 .phase-card h3 { font-size: 1.1rem; }
 
-/* 8. TESTIMONIALS */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
+/* 8. TESTIMONIALS (CAROUSEL) */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    max-width: 400px;
+    margin: 32px auto 0;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.testimonial-card {
-    background: white;
-    padding: 32px;
-    border-radius: 20px;
-    font-style: italic;
-    border-left: 4px solid var(--color-gold);
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: block;
 }
 
 /* 9. WHO IT IS FOR */

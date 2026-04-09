@@ -46,4 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 3. IMAGE CAROUSEL AUTO-SLIDE
+    const track = document.querySelector('.carousel-track');
+    if (track) {
+        const slides = Array.from(track.children);
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+                currentIndex = 0; // Volta para o começo
+            }
+            // Move no eixo X baseado no index (100% da largura por slide)
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Passa a imagem a cada 3 segundos
+        setInterval(updateCarousel, 3000);
+    }
+
+
 });
